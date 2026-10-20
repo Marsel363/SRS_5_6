@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Путешествия по Африке — Africa Travel{% endblock %}
+
+{% block content %}
+    <section class="hero mb-4">
+        <img
+            class="hero-photo"
+            src="{% static 'images/hero.jpg' %}"
+            alt="Пейзаж Африки"
+        >
+
+        <div class="hero-content">
+            <div class="eyebrow mb-3">АФРИКА БЛИЖЕ, ЧЕМ КАЖЕТСЯ</div>
+
+            <h1>Ваше следующее<br>большое путешествие</h1>
+
+            <p>Сафари на рассвете, океан и города с тысячелетней историей. Найдите свой маршрут по Африке.</p>
+
+            <a
+                class="btn btn-primary btn-lg"
+                href="{% url 'catalog' %}"
+            >Открыть каталог туров →</a>
+        </div>
+    </section>
+
+    <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-3">
+        <div>
+            <div class="page-pretitle">ВДОХНОВЕНИЕ ДЛЯ ОТПУСКА</div>
+            <h2 class="page-title">Откройте другую Африку</h2>
+        </div>
+
+        <a
+            href="{% url 'catalog' %}"
+            class="btn btn-outline-primary"
+        >Все направления</a>
+    </div>
+
+    <div class="row row-cards">
+        {% include 'travel/partials/tour_grid.html' %}
+    </div>
+{% endblock %}

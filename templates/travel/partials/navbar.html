@@ -1,0 +1,66 @@
+{% load static %}
+
+<header class="navbar navbar-expand-md d-print-none">
+    <div class="container-xl">
+        <a
+            class="navbar-brand brand"
+            href="{% url 'home' %}"
+        ><img
+            class="brand-logo"
+            src="{% static 'images/logo.png' %}"
+            alt=""
+            width="52"
+            height="52"
+        ><span>AFRICA <b>TRAVEL</b></span></a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#main-nav"
+            aria-controls="main-nav"
+            aria-expanded="false"
+            aria-label="Открыть меню"
+        ><span class="navbar-toggler-icon"></span></button>
+
+        <div class="collapse navbar-collapse" id="main-nav">
+            <nav
+                class="navbar-nav ms-auto gap-md-2"
+                aria-label="Основная навигация"
+            >
+                {% with current=request.resolver_match.url_name %}
+                    <a
+                        class="nav-link {% if current == 'home' %}active{% endif %}"
+                        href="{% url 'home' %}"
+                    >Главная</a>
+
+                    <a
+                        class="nav-link {% if current == 'catalog' or current == 'detail' %}active{% endif %}"
+                        href="{% url 'catalog' %}"
+                    >Туры</a>
+
+                    <a
+                        class="nav-link {% if current == 'favorites' %}active{% endif %}"
+                        href="{% url 'favorites' %}"
+                    >Избранное <span class="badge bg-orange-lt ms-1" data-favorite-count>{{ favorite_count }}</span></a>
+
+                    <a
+                        class="nav-link {% if current == 'bookings' %}active{% endif %}"
+                        href="{% url 'bookings' %}"
+                    >Мои заявки</a>
+
+                    <a
+                        class="nav-link {% if current == 'about' %}active{% endif %}"
+                        href="{% url 'about' %}"
+                    >Контакты</a>
+                {% endwith %}
+
+                <button
+                    class="btn btn-outline-secondary ms-md-2"
+                    id="theme-toggle"
+                    aria-label="Переключить светлую и тёмную тему"
+                >Тема</button>
+            </nav>
+        </div>
+    </div>
+</header>

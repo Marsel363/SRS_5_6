@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Мои заявки — Africa Travel{% endblock %}
+
+{% block content %}
+    <div class="page-pretitle">ЛИЧНЫЙ МАРШРУТ</div>
+
+    <h1 class="page-title mb-2">Мои заявки</h1>
+
+    <p class="text-secondary mb-4">Ваши поездки и актуальный статус обращения.</p>
+
+    <div class="row row-cards">
+        {% for booking in bookings %}
+            {% include 'travel/partials/booking_card.html' %}
+        {% empty %}
+            <div class="col-12">
+                <div class="card empty p-5">
+                    <h2>Первое путешествие впереди</h2>
+
+                    <p class="text-secondary">Выберите тур и отправьте заявку на странице маршрута.</p>
+
+                    <a
+                        class="btn btn-primary"
+                        href="{% url 'catalog' %}"
+                    >Подобрать тур</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

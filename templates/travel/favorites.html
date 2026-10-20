@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Избранное — Africa Travel{% endblock %}
+
+{% block content %}
+    <div class="page-pretitle">ВАШ СПИСОК ВДОХНОВЕНИЯ</div>
+
+    <h1 class="page-title mb-2">Избранные путешествия</h1>
+
+    <p class="text-secondary mb-4">Сохраните интересные маршруты и вернитесь к выбору позже.</p>
+
+    <div class="row row-cards" id="favorites-grid">
+        {% include 'travel/partials/tour_grid.html' %}
+    </div>
+
+    <a
+        class="btn btn-primary mt-4"
+        href="{% url 'catalog' %}"
+    >Продолжить поиск туров</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% for tour in tours %}
+    {% include 'travel/partials/tour_card.html' %}
+{% empty %}
+    <div class="col-12">
+        <div class="empty card p-5">
+            <h3>Туры не найдены</h3>
+
+            <p class="text-secondary mb-0">Измените фильтры или добавьте понравившийся тур в избранное.</p>
+        </div>
+    </div>
+{% endfor %}

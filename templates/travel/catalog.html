@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block title %}Каталог туров — Africa Travel{% endblock %}
+
+{% block content %}
+    <div class="page-header mb-4">
+        <div class="page-pretitle">ПЛАНИРУЙТЕ ПУТЕШЕСТВИЕ</div>
+        <h1 class="page-title">Туры по Африке</h1>
+
+        <p class="text-secondary mt-2">Выберите страну, формат отдыха и комфортный бюджет.</p>
+    </div>
+
+    <div class="row g-4">
+        <aside class="col-12 col-lg-3">
+            <form id="filters" class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Подобрать тур</h2>
+                </div>
+
+                <div class="card-body">
+                    <label class="form-label" for="search">Поиск</label>
+
+                    <input
+                        class="form-control mb-3"
+                        id="search"
+                        name="q"
+                        placeholder="Название или страна"
+                        maxlength="100"
+                    >
+
+                    <label class="form-label" for="country">Страна</label>
+
+                    <select
+                        class="form-select mb-3"
+                        name="country"
+                        id="country"
+                    >
+                        <option value="">Все страны</option>
+
+                        {% for country in countries %}
+                            <option value="{{ country.slug }}">{{ country.name }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <label class="form-label" for="category">Формат отдыха</label>
+
+                    <select
+                        class="form-select mb-3"
+                        id="category"
+                        name="category"
+                    >
+                        <option value="">Любой формат</option>
+                        <option value="safari">Сафари</option>
+                        <option value="beach">Пляж</option>
+                        <option value="culture">Культура</option>
+                    </select>
+
+                    <label class="form-label" for="budget">Бюджет на человека, ₽</label>
+
+                    <input
+                        class="form-control mb-3"
+                        type="number"
+                        min="0"
+                        step="1000"
+                        name="max_price"
+                        id="budget"
+                        placeholder="Без ограничения"
+                    >
+
+                    <label class="form-label" for="sort">Сортировка</label>
+
+                    <select
+                        class="form-select mb-3"
+                        id="sort"
+                        name="sort"
+                    >
+                        <option value="title">По названию</option>
+                        <option value="price">Сначала дешевле</option>
+                        <option value="-price">Сначала дороже</option>
+                        <option value="duration">По длительности</option>
+                    </select>
+
+                    <button
+                        class="btn btn-primary w-100 mb-2"
+                        type="submit"
+                    >Найти туры</button>
+
+                    <button
+                        class="btn btn-ghost-secondary w-100"
+                        type="reset"
+                    >Сбросить фильтры</button>
+                </div>
+            </form>
+        </aside>
+
+        <section
+            class="col-12 col-lg-9"
+            aria-label="Результаты поиска"
+        >
+            <div class="d-flex justify-content-between align-items-center gap-2 mb-3">
+                <span
+                    class="text-secondary"
+                    id="result-count"
+                    role="status"
+                >Найдено туров: {{ tours|length }}</span>
+
+                <div
+                    class="btn-group"
+                    role="group"
+                    aria-label="Вид каталога"
+                >
+                    <button
+                        class="btn btn-sm btn-outline-secondary"
+                        data-layout="grid"
+                    >Плитка</button>
+
+                    <button
+                        class="btn btn-sm btn-outline-secondary"
+                        data-layout="list"
+                    >Список</button>
+                </div>
+            </div>
+
+            <div
+                id="filter-error"
+                class="alert alert-danger d-none"
+                role="alert"
+            ></div>
+
+            <div class="row row-cards" id="tour-results">
+                {% include 'travel/partials/tour_grid.html' %}
+            </div>
+        </section>
+    </div>
+{% endblock %}
