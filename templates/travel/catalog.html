@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Туры по Африке — Africa Travel{% endblock %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/explore.css' %}">
+    <section
+        id="explore"
+        data-list-url="{% url 'explore_api_list' %}"
+        data-detail-url="{% url 'explore_api_detail' 0 %}"
+    >
+        <div class="explore-heading">
+            <div>
+                <div class="subheader">ВАШЕ СЛЕДУЮЩЕЕ ПУТЕШЕСТВИЕ</div>
+                <h1 class="page-title mt-1">Туры по Африке</h1>
+                <p class="text-secondary mt-2 mb-0">Выберите направление и узнайте больше о туре прямо здесь.</p>
+            </div>
+            <button class="btn btn-outline-secondary" id="explore-refresh" type="button">Обновить туры</button>
+        </div>
+        <form id="explore-filters" class="card mb-4" role="search" aria-label="Подбор тура">
+            <div class="card-body explore-controls">
+                <div class="explore-search">
+                    <label class="form-label" for="explore-search">Поиск путешествия</label>
+                    <input
+                        class="form-control"
+                        id="explore-search"
+                        name="search"
+                        maxlength="100"
+                        type="search"
+                        placeholder="Например, Кения или сафари"
+                        autocomplete="off"
+                    >
+                </div>
+                <div>
+                    <label class="form-label" for="explore-country">Страна</label>
+                    <select class="form-select" id="explore-country" name="country">
+                        <option value="">Все страны</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label" for="explore-category">Тип отдыха</label>
+                    <select class="form-select" id="explore-category" name="category">
+                        <option value="">Любой отдых</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label" for="explore-budget">Бюджет на человека, ₽</label>
+                    <input
+                        class="form-control"
+                        id="explore-budget"
+                        name="max_price"
+                        type="number"
+                        min="0"
+                        max="1000000000"
+                        step="1"
+                        placeholder="Без ограничений"
+                    >
+                </div>
+                <div>
+                    <label class="form-label" for="explore-ordering">Сортировка</label>
+                    <select class="form-select" id="explore-ordering" name="ordering">
+                        <option value="title">По названию</option>
+                        <option value="price">Сначала дешевле</option>
+                        <option value="-price">Сначала дороже</option>
+                        <option value="duration">Сначала короткие</option>
+                        <option value="-duration">Сначала длинные</option>
+                    </select>
+                </div>
+                <div class="explore-filter-actions">
+                    <button class="btn btn-primary" type="submit">Найти тур</button>
+                    <button class="btn btn-link" type="reset">Сбросить</button>
+                </div>
+            </div>
+        </form>
+        <div class="explore-workspace">
+            <section aria-labelledby="explore-results-title" id="explore-results" aria-busy="false">
+                <div class="d-flex align-items-center justify-content-between mb-3 gap-2">
+                    <h2 class="h3 mb-0" id="explore-results-title">Подходящие путешествия</h2>
+                    <span class="text-secondary small" id="explore-status" role="status" aria-live="polite">Готовим каталог</span>
+                </div>
+                <div id="explore-message" class="card p-4 mb-3" role="status"></div>
+                <div id="explore-list" class="explore-list"></div>
+                <nav
+                    class="explore-pagination mt-3"
+                    aria-label="Страницы туров"
+                    hidden
+                    id="explore-pagination"
+                >
+                    <button class="btn btn-outline-secondary" type="button" id="explore-prev">Назад</button>
+                    <span id="explore-page-label" aria-live="polite"></span>
+                    <button class="btn btn-outline-secondary" type="button" id="explore-next">Далее</button>
+                </nav>
+            </section>
+            <aside
+                class="card explore-detail"
+                id="explore-detail"
+                aria-labelledby="explore-detail-title"
+                aria-busy="false"
+            >
+                <div class="card-header">
+                    <h2 class="card-title" id="explore-detail-title">Ваше путешествие</h2>
+                </div>
+                <div id="explore-detail-content" class="card-body" aria-live="polite">
+                    <p class="text-secondary mb-0">Выберите тур из списка, чтобы посмотреть программу и стоимость.</p>
+                </div>
+            </aside>
+        </div>
+        <noscript>
+            <div class="alert alert-warning mt-3">Для просмотра каталога и подбора туров включите JavaScript.</div>
+        </noscript>
+    </section>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/explore.js' %}" defer></script>
+{% endblock %}

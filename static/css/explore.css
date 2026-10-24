@@ -1,0 +1,276 @@
+.explore-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 26px;
+}
+
+.explore-heading h1 {
+    font-size: clamp(28px,3vw,38px);
+    line-height: 1.15;
+}
+
+.explore-controls {
+    display: grid;
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    gap: 18px;
+}
+
+.explore-search {
+    grid-column: span 2;
+}
+
+.explore-filter-actions {
+    display: flex;
+    align-items: end;
+    gap: 8px;
+}
+
+.explore-workspace {
+    display: grid;
+    grid-template-columns: minmax(0,1.15fr) minmax(0,1fr);
+    gap: 24px;
+    align-items: start;
+}
+
+.explore-list {
+    display: grid;
+    gap: 14px;
+}
+
+.explore-tour {
+    display: grid;
+    grid-template-columns: 145px minmax(0,1fr);
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    color: inherit;
+    background: var(--tblr-bg-surface);
+    border: 1px solid var(--tblr-border-color);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: border-color .15s,box-shadow .15s;
+}
+
+.explore-tour:hover {
+    border-color: var(--tblr-primary);
+}
+
+.explore-tour[aria-pressed=true] {
+    border-color: var(--tblr-primary);
+    box-shadow: 0 0 0 2px rgba(182,92,46,.17);
+}
+
+.explore-tour img {
+    width: 145px;
+    height: 100%;
+    min-height: 170px;
+    object-fit: cover;
+}
+
+.explore-tour-body {
+    padding: 19px;
+    min-width: 0;
+}
+
+.explore-tour-title {
+    display: block;
+    font-size: 19px;
+    font-weight: 650;
+    line-height: 1.25;
+    margin: 8px 0;
+}
+
+.explore-tour-price {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 12px;
+}
+
+.explore-tour-meta {
+    font-size: 12px;
+    color: var(--tblr-secondary);
+    display: block;
+}
+
+.explore-detail {
+    position: sticky;
+    top: 20px;
+    overflow: hidden;
+    min-width: 0;
+    scroll-margin-top: 16px;
+}
+
+.explore-detail-photo {
+    display: block;
+    width: 100%;
+    height: 225px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.explore-detail h3 {
+    font-size: 25px;
+    line-height: 1.2;
+}
+
+.explore-detail p {
+    white-space: pre-line;
+}
+
+.explore-detail-price {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 16px 0 4px;
+}
+
+.explore-detail-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.explore-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+#explore [hidden] {
+    display: none!important;
+}
+
+#explore-message {
+    min-height: 160px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
+
+#explore-message .spinner-border {
+    width: 28px;
+    height: 28px;
+}
+
+.explore-detail .spinner-border {
+    display: block;
+    margin: 24px auto;
+}
+
+.explore-controls input,.explore-controls select {
+    min-height: 40px;
+}
+
+@media(max-width:991px) {
+    .explore-workspace {
+        grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+        gap: 18px;
+    }
+
+    .explore-controls {
+        grid-template-columns: repeat(3,minmax(0,1fr));
+    }
+
+    .explore-tour {
+        grid-template-columns: 1fr;
+    }
+
+    .explore-tour img {
+        width: 100%;
+        height: 155px;
+        min-height: 0;
+    }
+
+    .explore-detail-photo {
+        height: 180px;
+    }
+
+    .explore-tour-body {
+        padding: 16px;
+    }
+
+    .explore-detail .card-body {
+        padding: 18px;
+    }
+
+}
+
+@media(max-width:767px) {
+    .explore-heading {
+        align-items: start;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .explore-controls {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+        padding: 18px;
+        gap: 14px;
+    }
+
+    .explore-search {
+        grid-column: 1/-1;
+    }
+
+    .explore-filter-actions {
+        grid-column: 1/-1;
+    }
+
+    .explore-workspace {
+        grid-template-columns: 1fr;
+    }
+
+    .explore-detail {
+        position: static;
+    }
+
+    .explore-tour {
+        grid-template-columns: 108px minmax(0,1fr);
+    }
+
+    .explore-tour img {
+        width: 108px;
+        height: 100%;
+        min-height: 170px;
+    }
+
+    .explore-tour-title {
+        font-size: 18px;
+    }
+
+    .explore-tour-body {
+        padding: 15px;
+    }
+
+    .explore-detail-photo {
+        height: 220px;
+    }
+
+    .explore-controls .form-label {
+        font-size: 12px;
+    }
+
+    .explore-pagination {
+        font-size: 12px;
+    }
+
+    #explore-results-title {
+        font-size: 17px;
+    }
+
+}
+
+@media(prefers-reduced-motion:reduce) {
+    .explore-tour {
+        transition: none;
+    }
+
+}

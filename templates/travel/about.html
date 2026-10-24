@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Контакты — Africa Travel{% endblock %}
+{% block content %}
+    <div class="page-header mb-4">
+        <div class="page-pretitle">AFRICA TRAVEL</div>
+        <h1 class="page-title">Контакты</h1>
+        <p class="text-secondary mt-2 contacts-intro">Свяжитесь с нами, если хотите уточнить детали путешествия.</p>
+    </div>
+    <div class="row row-cards">
+        <section class="col-12 col-lg-7">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="card-title">Контактная информация</h2>
+                </div>
+                <div class="card-body">
+                    <dl class="contact-details mb-0">
+                        <div>
+                            <dt>Адрес</dt>
+                            <dd>г. Москва, ул. Путешествий, 15</dd>
+                        </div>
+                        <div>
+                            <dt>Телефон</dt>
+                            <dd>
+                                <a href="tel:+74951234567">+7 (495) 123-45-67</a>
+                            </dd>
+                        </div>
+                        <div>
+                            <dt>Email</dt>
+                            <dd>
+                                <a href="mailto:info@africa-travel.ru">info@africa-travel.ru</a>
+                            </dd>
+                        </div>
+                        <div>
+                            <dt>Режим работы</dt>
+                            <dd>Пн–Пт, 09:00–18:00</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </section>
+        <section class="col-12 col-lg-5">
+            <div class="card contact-callout">
+                <div class="card-body d-flex flex-column justify-content-center p-4">
+                    <div class="page-pretitle mb-2">ВАШ МАРШРУТ НАЧИНАЕТСЯ ЗДЕСЬ</div>
+                    <h2>Подберите путешествие</h2>
+                    <p class="text-secondary">Выберите страну, формат отдыха и бюджет — система покажет подходящие варианты.</p>
+                    <a class="btn btn-primary align-self-start mt-2" href="{% url 'catalog' %}">Перейти к подбору тура →</a>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>{% block title %}Africa Travel{% endblock %}</title>
+        <script>
+            try {
+                            document.documentElement.dataset.bsTheme = localStorage.getItem('africa-theme') || 'light'
+                        } catch (e) { }
+        </script>
+        <link rel="stylesheet" href="{% static 'vendor/tabler/tabler.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    </head>
+    <body>
+        <div class="page">
+            {% include 'travel/partials/navbar.html' %}
+            <main class="page-wrapper">
+                <div class="container-xl py-4">
+                    {% block content %}{% endblock %}
+                </div>
+                {% include 'travel/partials/footer.html' %}
+            </main>
+        </div>
+        <div id="notice" class="alert notice d-none" role="status" aria-live="polite"></div>
+        <script src="{% static 'vendor/tabler/tabler.min.js' %}"></script>
+        <script src="{% static 'js/app.js' %}" defer></script>
+        {% block scripts %}{% endblock %}
+    </body>
+</html>

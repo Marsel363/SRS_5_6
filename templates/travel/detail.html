@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ tour.title }} — Africa Travel{% endblock %}
+{% block content %}
+    <a class="btn btn-ghost-secondary mb-3" href="{% url 'catalog' %}">← В каталог</a>
+    <div class="row g-4">
+        <section class="col-12 col-lg-7">
+            <img class="detail-image mb-4" src="{% static tour.image %}" alt="{{ tour.country.name }}">
+            <span class="badge bg-orange-lt mb-3">{{ tour.country.name }} · {{ tour.get_category_display }}</span>
+            <h1>{{ tour.title }}</h1>
+            <p class="text-secondary fs-3">{{ tour.duration }} дней · {{ tour.country.name }}</p>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h2 class="card-title">Программа путешествия</h2>
+                    <p>{{ tour.description }}</p>
+                    <h3>В стоимость включено</h3>
+                    <p>{{ tour.included }}</p>
+                    <a href="{{ tour.source_url }}" target="_blank" rel="noopener">Подробнее о направлении ↗</a>
+                </div>
+            </div>
+            <div class="alert alert-info">Расчёт по каталогу носит предварительный характер. Отправка заявки позволяет сохранить выбранный маршрут и параметры поездки.</div>
+        </section>
+        <aside class="col-12 col-lg-5">
+            <div class="card booking-panel">
+                <div class="card-header">
+                    <h2 class="card-title">Спланировать поездку</h2>
+                </div>
+                <div class="card-body">
+                    <div class="text-secondary">За одного путешественника</div>
+                    <div class="h1 mb-4">{{ tour.price }} ₽</div>
+                    {% include 'travel/partials/booking_form.html' %}
+                </div>
+            </div>
+        </aside>
+    </div>
+{% endblock %}

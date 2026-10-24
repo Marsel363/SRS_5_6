@@ -1,0 +1,22 @@
+<div class="col-12 col-md-6">
+    <article class="card h-100">
+        <div class="card-header d-flex justify-content-between gap-2">
+            <h2 class="card-title">Заявка №{{ booking.id }}</h2>
+            <span
+                class="badge {% if booking.status == 'new' %}bg-green-lt{% else %}bg-secondary-lt{% endif %}"
+                id="status-{{ booking.id }}"
+            >{{ booking.get_status_display }}</span>
+        </div>
+        <div class="card-body">
+            <h3>
+                <a href="{% url 'detail' booking.tour_id %}">{{ booking.tour.title }}</a>
+            </h3>
+            <p class="text-secondary">{{ booking.departure|date:'d.m.Y' }} · Туристов: {{ booking.travelers }}</p>
+            <p>{{ booking.name }} · {{ booking.email }}</p>
+            <div class="h2">{{ booking.total }} ₽</div>
+            {% if booking.status == 'new' %}
+                <button class="btn btn-outline-danger" data-cancel="{{ booking.id }}">Отменить заявку</button>
+            {% endif %}
+        </div>
+    </article>
+</div>
